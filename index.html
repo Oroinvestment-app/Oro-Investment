@@ -2,68 +2,286 @@
 <html lang="om">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>ORO Investment</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
         body {
-            background-color: #121212;
+            background-color: #0d0d0d;
             color: #ffffff;
-            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(180deg, #221d00 0%, #0d0d0d 100%);
+            border-bottom: 1px solid #332b00;
+        }
+        .header h1 {
+            color: #ffd700;
+            font-size: 20px;
+        }
+        .balance-box {
+            background: #181818;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #ffd700;
             text-align: center;
         }
-        .card {
-            background: #1e1e1e;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
-            width: 80%;
-            max-width: 350px;
-            border: 1px solid #ffd700;
-        }
-        h1 {
-            color: #ffd700;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #cccccc;
+        .balance-box h3 {
+            color: #aaa;
             font-size: 14px;
         }
-        .btn {
-            background-color: #ffd700;
+        .balance-box h2 {
+            color: #ffd700;
+            font-size: 28px;
+            margin-top: 5px;
+        }
+        .container {
+            padding: 15px;
+            flex: 1;
+            margin-bottom: 60px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .vip-card {
+            background: #161616;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .vip-info h4 {
+            color: #ffd700;
+            font-size: 16px;
+        }
+        .vip-info p {
+            font-size: 12px;
+            color: #ccc;
+            margin-top: 3px;
+        }
+        .btn-buy {
+            background: #ffd700;
             color: #000;
             border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+            padding: 8px 15px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            margin-top: 15px;
-            width: 100%;
         }
-        .btn:hover {
-            background-color: #e6c200;
+        .payment-details {
+            background: #1a1a1a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            border-left: 3px solid #ffd700;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 6px;
+        }
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: #141414;
+            padding: 10px 0;
+            border-top: 1px solid #262626;
+        }
+        .nav-item {
+            color: #777;
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: #ffd700;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>ORO Investment</h1>
-        <p>Baga gara Telegram Mini App keenyaatti nagataan dhuftan!</p>
-        <button class="btn" onclick="alert('Sirna Investment dhiyootti banama!')">Eegalchi</button>
+    <div class="header">
+        <h1>ORO INVESTMENT</h1>
+    </div>
+
+    <div class="balance-box">
+        <h3>Total Balance</h3>
+        <h2><span id="user-balance">0.00</span> ETB</h2>
+    </div>
+
+    <div class="container">
+        <!-- HOME / VIP PACKAGES -->
+        <div id="home" class="tab-content active">
+            <h3 style="margin-bottom: 10px; color: #ffd700;">VIP Packages</h3>
+            
+            <div class="vip-card">
+                <div class="vip-info">
+                    <h4>VIP 1</h4>
+                    <p>Invest: 500 ETB | Daily: 150 ETB</p>
+                    <p>Duration: 15 Days | Total: 2,250 ETB</p>
+                </div>
+                <button class="btn-buy" onclick="selectVIP('VIP 1', 500)">Invest</button>
+            </div>
+
+            <div class="vip-card">
+                <div class="vip-info">
+                    <h4>VIP 2</h4>
+                    <p>Invest: 1,500 ETB | Daily: 350 ETB</p>
+                    <p>Duration: 25 Days | Total: 8,750 ETB</p>
+                </div>
+                <button class="btn-buy" onclick="selectVIP('VIP 2', 1500)">Invest</button>
+            </div>
+
+            <div class="vip-card">
+                <div class="vip-info">
+                    <h4>VIP 3</h4>
+                    <p>Invest: 2,500 ETB | Daily: 455 ETB</p>
+                    <p>Duration: 33 Days | Total: 15,000 ETB</p>
+                </div>
+                <button class="btn-buy" onclick="selectVIP('VIP 3', 2500)">Invest</button>
+            </div>
+
+            <div class="vip-card">
+                <div class="vip-info">
+                    <h4>VIP 4</h4>
+                    <p>Invest: 3,500 ETB | Daily: 550 ETB</p>
+                    <p>Duration: 45 Days | Total: 24,750 ETB</p>
+                </div>
+                <button class="btn-buy" onclick="selectVIP('VIP 4', 3500)">Invest</button>
+            </div>
+
+            <div class="vip-card">
+                <div class="vip-info">
+                    <h4>VIP 5</h4>
+                    <p>Invest: 6,500 ETB | Daily: 950 ETB</p>
+                    <p>Duration: 45 Days | Total: 38,000 ETB</p>
+                </div>
+                <button class="btn-buy" onclick="selectVIP('VIP 5', 6500)">Invest</button>
+            </div>
+        </div>
+
+        <!-- RECHARGE TAB -->
+        <div id="recharge" class="tab-content">
+            <h3 style="margin-bottom: 10px; color: #ffd700;">Kaffaltii Galchuu (Recharge)</h3>
+            
+            <div class="payment-details">
+                <p><strong>1. Bank Transfer (CBE):</strong></p>
+                <p>Acc: <code>1000609844292</code></p>
+                <p>Name: Geleta Adem</p>
+                <br>
+                <p><strong>2. Telebirr Transfer:</strong></p>
+                <p>Number: <code>0941470214</code></p>
+                <p>Name: Geleta Adem</p>
+                <br>
+                <p><strong>3. CBE Birr Transfer:</strong></p>
+                <p>Number: <code>0941470214</code></p>
+                <p>Name: Geleta Adem</p>
+            </div>
+
+            <form onsubmit="submitRecharge(event)">
+                <label style="font-size: 12px; color: #aaa;">Gosa VIP Filadhu:</label>
+                <select id="recharge-vip" class="input-field" required>
+                    <option value="VIP 1 (500 ETB)">VIP 1 - 500 ETB</option>
+                    <option value="VIP 2 (1500 ETB)">VIP 2 - 1,500 ETB</option>
+                    <option value="VIP 3 (2500 ETB)">VIP 3 - 2,500 ETB</option>
+                    <option value="VIP 4 (3500 ETB)">VIP 4 - 3,500 ETB</option>
+                    <option value="VIP 5 (6500 ETB)">VIP 5 - 6,500 ETB</option>
+                </select>
+
+                <label style="font-size: 12px; color: #aaa;">Screenshot Kaffaltii Upload Godhi:</label>
+                <input type="file" accept="image/*" class="input-field" required>
+
+                <button type="submit" class="btn-buy" style="width: 100%; padding: 12px; margin-top: 10px;">Ergi (Submit Payment)</button>
+            </form>
+        </div>
+
+        <!-- WITHDRAW TAB -->
+        <div id="withdraw" class="tab-content">
+            <h3 style="margin-bottom: 10px; color: #ffd700;">Maallaqa Baasuu (Withdraw)</h3>
+            
+            <form onsubmit="submitWithdraw(event)">
+                <label style="font-size: 12px; color: #aaa;">Karaa Baafachuu Barbaaddu Filadhu:</label>
+                <select class="input-field" required>
+                    <option value="Telebirr">Telebirr</option>
+                    <option value="CBE Birr">CBE Birr</option>
+                    <option value="CBE Bank">CBE Bank Account</option>
+                </select>
+
+                <label style="font-size: 12px; color: #aaa;">Lakkoofsa Account/Bilbila Kee:</label>
+                <input type="text" placeholder="Lakkoofsa galchi" class="input-field" required>
+
+                <label style="font-size: 12px; color: #aaa;">Hamma Maallaqaa (ETB):</label>
+                <input type="number" placeholder="Fakkeenya: 150" class="input-field" required>
+
+                <button type="submit" class="btn-buy" style="width: 100%; padding: 12px; margin-top: 10px;">Baasii Gaafadhu</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="nav-item active" onclick="switchTab('home', this)">💎 VIPs</div>
+        <div class="nav-item" onclick="switchTab('recharge', this)">📥 Recharge</div>
+        <div class="nav-item" onclick="switchTab('withdraw', this)">📤 Withdraw</div>
     </div>
 
     <script>
         Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+
+        let balance = localStorage.getItem('oro_balance') ? parseFloat(localStorage.getItem('oro_balance')) : 0;
+        document.getElementById('user-balance').innerText = balance.toFixed(2);
+
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        function selectVIP(name, amount) {
+            alert(name + " filatteetta! Maaloo tab 'Recharge' deemuun kaffaltii " + amount + " ETB raawwadhuu screenshot upload godhi.");
+            switchTab('recharge', document.querySelectorAll('.nav-item')[1]);
+        }
+
+        function submitRecharge(e) {
+            e.preventDefault();
+            alert("Ragaan kaffaltii keessanii ergameera! Qorannoo booda balansii keessan irratti ida'ama.");
+        }
+
+        function submitWithdraw(e) {
+            e.preventDefault();
+            alert("Gaaffiin baasii keessani ergameera! Isinif qulqullaa'ee ergama.");
+        }
     </script>
 </body>
 </html>
-
