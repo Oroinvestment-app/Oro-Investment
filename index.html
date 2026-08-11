@@ -294,15 +294,14 @@
     
     if(amt && proof) {
       closeModal('rechargeModal');
-      showStatus("⏳ Your payment is processing...", "#ffd700");
-      alert('Your payment is processing...');
+      showStatus("⏳ Your payment processing...", "#ffd700");
+      alert('Your payment processing...');
 
-      // Simulation of approval
       setTimeout(() => {
         rBalance += amt;
         document.getElementById('r-bal').innerText = rBalance.toFixed(2);
-        showStatus("✅ Your payment was Successful!", "#28a745");
-        alert('Your payment was Successful!');
+        showStatus("✅ Your payment Successful!", "#28a745");
+        alert('Your payment Successful!');
       }, 4000);
     } else {
       alert('Please enter amount and upload payment receipt image!');
@@ -327,15 +326,15 @@
     }
 
     closeModal('withdrawModal');
-    showStatus("⏳ Your withdrawal is processing...", "#ffd700");
-    alert('Your withdrawal is processing...');
+    showStatus("⏳ Your withdrawal processing...", "#ffd700");
+    alert('Your withdrawal processing...');
 
     setTimeout(() => {
       wBalance -= amt;
       document.getElementById('w-bal').innerText = wBalance.toFixed(2);
       lastWithdrawal = now;
-      showStatus("🎉 Congratulations! Your withdrawal was Successful!", "#28a745");
-      alert('Congratulations! Your withdrawal was Successful!');
+      showStatus("🎉 Congratulations! Your withdrawal Successful!", "#28a745");
+      alert('Congratulations! Your withdrawal Successful!');
     }, 4000);
   }
 
