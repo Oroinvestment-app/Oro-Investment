@@ -3,339 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORO Investment</title>
+    <title>Hard Job - Platform</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0f0f12; color: #ffffff; padding-bottom: 70px; }
-        
-        /* Header & Logo */
-        .header { background: #1a1a24; padding: 15px; text-align: center; border-bottom: 2px solid #ffd700; position: sticky; top: 0; z-index: 100; }
-        .header img { width: 50px; height: 50px; border-radius: 50%; vertical-align: middle; }
-        .header h2 { display: inline-block; color: #ffd700; margin-left: 10px; font-size: 20px; vertical-align: middle; }
-
-        /* Auth Screen */
-        .auth-container { padding: 20px; max-width: 400px; margin: 40px auto; background: #1a1a24; border-radius: 12px; border: 1px solid #333; }
-        .auth-container h3 { color: #ffd700; margin-bottom: 15px; text-align: center; }
-        .input-group { margin-bottom: 15px; }
-        .input-group label { display: block; margin-bottom: 5px; font-size: 13px; color: #aaa; }
-        .input-group input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #444; background: #0f0f12; color: #fff; }
-        .btn-submit { width: 100%; padding: 12px; background: #ffd700; color: #000; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; }
-
-        /* App Dashboard */
-        #app-content { display: none; }
-        .wallet-card { background: linear-gradient(135deg, #1f1f2e, #2a2a3d); margin: 15px; padding: 20px; border-radius: 12px; border: 1px solid #ffd700; text-align: center; }
-        .wallet-card h4 { color: #aaa; font-size: 14px; }
-        .wallet-card .balance { font-size: 28px; color: #ffd700; font-weight: bold; margin: 10px 0; }
-        
-        .action-buttons { display: flex; justify-content: space-around; margin-top: 15px; }
-        .btn-action { background: #ffd700; color: #000; padding: 8px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 12px; border: none; cursor: pointer; }
-
-        /* Navigation Tabs */
-        .nav-tabs { display: flex; justify-content: space-around; background: #1a1a24; padding: 10px; margin: 10px 0; }
-        .tab-btn { background: none; border: none; color: #888; font-weight: bold; font-size: 13px; padding: 8px; cursor: pointer; border-bottom: 2px solid transparent; }
-        .tab-btn.active { color: #ffd700; border-bottom: 2px solid #ffd700; }
-
-        /* Section Cards */
-        .market-section { display: none; padding: 10px; }
-        .market-section.active { display: block; }
-
-        .product-card { background: #1a1a24; border: 1px solid #2d2d3f; border-radius: 10px; padding: 12px; margin-bottom: 12px; display: flex; align-items: center; }
-        .product-card img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; margin-right: 12px; }
-        .product-info { flex-grow: 1; }
-        .product-info h4 { color: #fff; font-size: 15px; margin-bottom: 4px; }
-        .product-info p { font-size: 11px; color: #bbb; margin: 2px 0; }
-        .badge { background: #ffd700; color: #000; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 4px; float: right; }
-
-        /* Notice Box */
-        .notice-box { background: #222; border-left: 4px solid #ffd700; padding: 10px; margin: 15px; font-size: 12px; color: #ccc; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0f0f12; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding-bottom: 80px; }
+        .header { background: #1a1a24; padding: 18px; text-align: center; border-bottom: 2px solid #ffd700; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .header h2 { color: #ffd700; font-size: 22px; letter-spacing: 1px; }
+        .balance-card { background: linear-gradient(135deg, #1f1f2e, #14141d); margin: 15px; padding: 20px; border-radius: 15px; border: 1px solid #ffd700; text-align: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1); }
+        .balance-val { font-size: 32px; font-weight: bold; color: #ffd700; margin: 10px 0; }
+        .btn-row { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .btn { padding: 12px 24px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        .btn-rec { background: #28a745; color: white; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
+        .btn-wit { background: #dc3545; color: white; box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3); }
+        .section { margin: 15px; background: #1a1a24; padding: 15px; border-radius: 12px; border: 1px solid #2d2d3d; }
+        .section h3 { color: #ffd700; font-size: 16px; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        .bank-card { background: #0a0a0d; padding: 12px; border-radius: 8px; border-left: 4px solid #ffd700; margin-bottom: 10px; }
+        .bank-card p { margin: 4px 0; font-size: 13px; color: #ddd; }
+        .bank-card b { color: #fff; }
+        .acc-num { color: #ffd700; font-weight: bold; font-size: 15px; }
+        .history-item { border-bottom: 1px solid #2a2a3a; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+        .status-proc { color: #ff9800; font-size: 12px; font-weight: bold; background: rgba(255, 152, 0, 0.1); padding: 4px 8px; border-radius: 5px; }
+        .status-succ { color: #28a745; font-size: 12px; font-weight: bold; background: rgba(40, 167, 69, 0.1); padding: 4px 8px; border-radius: 5px; }
+        .social-link { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; margin: 8px 0; padding: 10px; background: #252538; border-radius: 8px; font-size: 14px; }
+        .social-link:hover { background: #32324a; }
+        .limit-info { font-size: 12px; color: #aaa; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-    <!-- Header & Logo -->
     <div class="header">
-        <img src="https://cdn-icons-png.flaticon.com/512/2172/2172586.png" alt="ORO Logo">
-        <h2>ORO INVESTMENT</h2>
+        <h2>HARD JOB PLATFORM</h2>
     </div>
 
-    <!-- Registration / Login Screen -->
-    <div id="auth-screen" class="auth-container">
-        <h3>Account Registration</h3>
-        <form onsubmit="handleLogin(event)">
-            <div class="input-group">
-                <label>Mobile Number</label>
-                <input type="tel" placeholder="09........" required id="phone">
-            </div>
-            <div class="input-group">
-                <label>6-Digit PIN Code</label>
-                <input type="password" maxlength="6" pattern="\d{6}" placeholder="123456" required id="pin">
-            </div>
-            <button type="submit" class="btn-submit">Register / Login</button>
-        </form>
+    <div class="balance-card">
+        <p style="color: #aaa; font-size: 14px;">Total Balance</p>
+        <div class="balance-val" id="myBalance">0.00 ETB</div>
+        <div class="btn-row">
+            <button class="btn btn-rec" onclick="toggleRecharge()">📥 Recharge</button>
+            <button class="btn btn-wit" onclick="openWithdraw()">📤 Withdraw</button>
+        </div>
+        <p class="limit-info">Withdrawal Limit: 700 ETB - 30,000 ETB</p>
     </div>
 
-    <!-- Main App Content -->
-    <div id="app-content">
-        <!-- Balance Wallet Card -->
-        <div class="wallet-card">
-            <h4>Total Wallet Balance</h4>
-            <div class="balance"><span id="user-balance">0.00</span> ETB</div>
-            <div class="action-buttons">
-                <button class="btn-action" onclick="showModal('Recharge')">📥 Recharge</button>
-                <button class="btn-action" onclick="showModal('Withdraw')">📤 Withdraw</button>
-                <button class="btn-action" onclick="showModal('Commission')">🎁 Commission</button>
-            </div>
+    <!-- Recharge Section (Payment Methods) -->
+    <div id="recharge-section" class="section" style="display:none;">
+        <h3>Deposit Payment Accounts</h3>
+        <p style="font-size: 12px; color: #ccc; margin-bottom: 12px;">Qarshii kaffaluuf lakkoofsa bankii armaan gadiitti fayyadamaa:</p>
+        
+        <!-- CBE BANK -->
+        <div class="bank-card" style="border-left-color: #ffd700;">
+            <p><b>Bank:</b> Commercial Bank of Ethiopia (CBE)</p>
+            <p><b>Acc. Number:</b> <span class="acc-num">1000609844292</span></p>
+            <p><b>Name:</b> Geleta Adem</p>
         </div>
 
-        <!-- Official Notice & Rules -->
-        <div class="notice-box">
-            <b>📢 Official Notice & Rules:</b>
-            <ul style="margin-left: 15px; margin-top: 5px;">
-                <li>Level 1 & 2 Market Withdrawals process within <b>48 Hours</b>.</li>
-                <li>Mineral Market (VIP) Withdrawals process within <b>24 Hours</b>.</li>
-                <li>Withdrawals are strictly allowed via <b>CBE Bank</b> only.</li>
-                <li>Defamation or false claims lead to permanent account suspension.</li>
-            </ul>
+        <!-- TELEBIRR -->
+        <div class="bank-card" style="border-left-color: #0088cc;">
+            <p><b>Wallet:</b> Telebirr</p>
+            <p><b>Number:</b> <span class="acc-num">0941470214</span></p>
+            <p><b>Name:</b> Geleta Adem</p>
         </div>
 
-        <!-- Category Navigation Tabs -->
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="switchMarket('m1')">Market 1</button>
-            <button class="tab-btn" onclick="switchMarket('m2')">Market 2</button>
-            <button class="tab-btn" onclick="switchMarket('vip')">Mineral Market</button>
-            <button class="tab-btn" onclick="switchMarket('invite-section')">Invite 🔗</button>
+        <!-- CBE BIRR -->
+        <div class="bank-card" style="border-left-color: #28a745;">
+            <p><b>Wallet:</b> CBE BIRR</p>
+            <p><b>Number:</b> <span class="acc-num">0941470214</span></p>
+            <p><b>Name:</b> Geleta Adem</p>
         </div>
 
-        <!-- Moderate Market 1 -->
-        <div id="m1" class="market-section active">
-            <h4 style="color:#ffd700; margin-bottom:10px;">Moderate Market 1</h4>
-            
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/833/833316.png" alt="Egg">
-                <div class="product-info">
-                    <span class="badge">5% Profit</span>
-                    <h4>Fresh Eggs</h4>
-                    <p>Price: <b>280 ETB</b> | Daily: <b>46 ETB</b></p>
-                    <p>Duration: 15 Days | Total: <b>690 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(280)">Invest</button>
-                </div>
-            </div>
+        <p style="font-size: 11px; color: #ff9800; margin-top: 10px; line-height: 1.4;">
+            ⚠️ Erga kaffaltii raawwattanii booda, nagahee (screenshot) kaffaltii sana Admin-iif ergaa.
+        </p>
+    </div>
 
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/3050/3050158.png" alt="Milk">
-                <div class="product-info">
-                    <span class="badge">10% Profit</span>
-                    <h4>Fresh Milk</h4>
-                    <p>Price: <b>350 ETB</b> | Daily: <b>49 ETB</b></p>
-                    <p>Duration: 19 Days | Total: <b>931 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(350)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2368/2368501.png" alt="Yogurt">
-                <div class="product-info">
-                    <span class="badge">15% Profit</span>
-                    <h4>Curd / Yogurt</h4>
-                    <p>Price: <b>450 ETB</b> | Daily: <b>58 ETB</b></p>
-                    <p>Duration: 29 Days | Total: <b>1,682 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(450)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/4287/4287661.png" alt="Dates">
-                <div class="product-info">
-                    <span class="badge">20% Profit</span>
-                    <h4>Organic Dates</h4>
-                    <p>Price: <b>600 ETB</b> | Daily: <b>65 ETB</b></p>
-                    <p>Duration: 33 Days | Total: <b>2,145 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(600)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/1135/1135528.png" alt="Avocado">
-                <div class="product-info">
-                    <span class="badge">25% Profit</span>
-                    <h4>Fresh Avocado</h4>
-                    <p>Price: <b>784 ETB</b> | Daily: <b>85 ETB</b></p>
-                    <p>Duration: 35 Days | Total: <b>2,975 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(784)">Invest</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Moderate Market 2 -->
-        <div id="m2" class="market-section">
-            <h4 style="color:#ffd700; margin-bottom:10px;">Moderate Market 2</h4>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Poultry">
-                <div class="product-info">
-                    <span class="badge">5% Profit</span>
-                    <h4>Poultry Chicken</h4>
-                    <p>Price: <b>550 ETB</b> | Daily: <b>60 ETB</b></p>
-                    <p>Duration: 25 Days | Total: <b>1,500 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(550)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/1998/1998610.png" alt="Goat">
-                <div class="product-info">
-                    <span class="badge">10% Profit</span>
-                    <h4>Fattened Goat</h4>
-                    <p>Price: <b>800 ETB</b> | Daily: <b>100 ETB</b></p>
-                    <p>Duration: 30 Days | Total: <b>3,000 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(800)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2395/2395796.png" alt="Cattle">
-                <div class="product-info">
-                    <span class="badge">15% Profit</span>
-                    <h4>Dairy Cow / Cattle</h4>
-                    <p>Price: <b>1,200 ETB</b> | Daily: <b>120 ETB</b></p>
-                    <p>Duration: 35 Days | Total: <b>4,200 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(1200)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/3048/3048380.png" alt="Horse">
-                <div class="product-info">
-                    <span class="badge">20% Profit</span>
-                    <h4>Breed Horse</h4>
-                    <p>Price: <b>1,500 ETB</b> | Daily: <b>150 ETB</b></p>
-                    <p>Duration: 40 Days | Total: <b>6,000 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(1500)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2042/2042675.png" alt="Camel">
-                <div class="product-info">
-                    <span class="badge">25% Profit</span>
-                    <h4>Commercial Camel</h4>
-                    <p>Price: <b>3,000 ETB</b> | Daily: <b>180 ETB</b></p>
-                    <p>Duration: 50 Days | Total: <b>9,000 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(3000)">Invest</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mineral Market (VIP) -->
-        <div id="vip" class="market-section">
-            <h4 style="color:#ffd700; margin-bottom:10px;">Mineral Market (VIP)</h4>
-
-            <div class="product-card" style="border: 1px solid #ffd700;">
-                <img src="https://cdn-icons-png.flaticon.com/512/2535/2535565.png" alt="Gold">
-                <div class="product-info">
-                    <span class="badge">30% VIP</span>
-                    <h4>VIP 1: Gold Mineral</h4>
-                    <p>Price: <b>4,000 ETB</b> | Daily: <b>650 ETB</b></p>
-                    <p>Duration: 15 Days | Total: <b>9,750 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(4000)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card" style="border: 1px solid #ffd700;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" alt="Mercury">
-                <div class="product-info">
-                    <span class="badge">40% VIP</span>
-                    <h4>VIP 2: Mercury Mineral</h4>
-                    <p>Price: <b>6,000 ETB</b> | Daily: <b>1,000 ETB</b></p>
-                    <p>Duration: 15 Days | Total: <b>15,000 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(6000)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card" style="border: 1px solid #ffd700;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3062/3062631.png" alt="Jade">
-                <div class="product-info">
-                    <span class="badge">50% VIP</span>
-                    <h4>VIP 3: Jade Gemstone</h4>
-                    <p>Price: <b>8,000 ETB</b> | Daily: <b>1,250 ETB</b></p>
-                    <p>Duration: 15 Days | Total: <b>18,750 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(8000)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card" style="border: 1px solid #ffd700;">
-                <img src="https://cdn-icons-png.flaticon.com/512/3062/3062688.png" alt="Emerald">
-                <div class="product-info">
-                    <span class="badge">75% VIP</span>
-                    <h4>VIP 4: Emerald Gemstone</h4>
-                    <p>Price: <b>10,000 ETB</b> | Daily: <b>1,500 ETB</b></p>
-                    <p>Duration: 15 Days | Total: <b>22,500 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(10000)">Invest</button>
-                </div>
-            </div>
-
-            <div class="product-card" style="border: 1px solid #ffd700;">
-                <img src="https://cdn-icons-png.flaticon.com/512/2909/2909562.png" alt="Diamond">
-                <div class="product-info">
-                    <span class="badge">100% VIP</span>
-                    <h4>VIP 5: Diamond Mineral</h4>
-                    <p>Price: <b>15,000 ETB</b> | Daily: <b>2,500 ETB</b></p>
-                    <p>Duration: 18 Days | Total: <b>45,000 ETB</b></p>
-                    <button class="btn-action" style="margin-top:5px;" onclick="buyProduct(15000)">Invest</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Invite Section (Separate Single Tab) -->
-        <div id="invite-section" class="market-section">
-            <div style="padding: 20px; background: #1a1a24; border-radius: 12px; border: 1px solid #ffd700; text-align: center;">
-                <h3 style="color: #ffd700; margin-bottom: 10px;">🔗 Referral Program</h3>
-                <p style="font-size: 13px; color: #ccc; margin-bottom: 15px;">
-                    Hiriyaa kee afeeri! Namni tokko yeroo afeerte <b>5 ETB Bonus</b> kallattiidhaan borsa (balance) keerratti argatta.
-                </p>
-                <input type="text" id="ref-link" value="https://t.me/OroInvestment_Bot?start=user123" readonly style="width: 100%; padding: 10px; background:#0f0f12; color:#fff; border:1px solid #444; border-radius:6px; text-align:center; margin-bottom: 10px;">
-                <button class="btn-submit" onclick="copyLink()">Copy Referral Link</button>
-            </div>
+    <!-- Withdrawal History -->
+    <div class="section">
+        <h3>Withdrawal History</h3>
+        <div id="withdraw-history">
+            <p style="color: #666; font-size: 13px; text-align: center; padding: 10px;">No withdrawal history yet.</p>
         </div>
     </div>
 
-    <!-- JavaScript Actions -->
+    <!-- Support & Admin Contact -->
+    <div class="section">
+        <h3>Support & Community</h3>
+        <a href="https://t.me/YourChannelLink" class="social-link">📢 Join Telegram Channel</a>
+        <a href="https://t.me/YourAdminLink" class="social-link">👤 Contact Admin</a>
+    </div>
+
     <script>
-        function handleLogin(e) {
-            e.preventDefault();
-            document.getElementById('auth-screen').style.display = 'none';
-            document.getElementById('app-content').style.display = 'block';
-            alert("Welcome to ORO Investment!");
-        }
+        let balance = 0;
 
-        function switchMarket(marketId) {
-            document.querySelectorAll('.market-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(marketId).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        function showModal(type) {
-            if (type === 'Withdraw') {
-                alert("Withdrawal Rules:\n- Only Commercial Bank of Ethiopia (CBE) allowed.\n- Level 1 & 2 Market: 48 Hours processing time.\n- Mineral Market (VIP): 24 Hours processing time.");
-            } else if (type === 'Recharge') {
-                alert("Recharge Methods: Telebirr, CBE Birr, or Bank Transfer. Please upload transaction screenshot.");
+        function toggleRecharge() {
+            let recSec = document.getElementById('recharge-section');
+            if (recSec.style.display === 'none') {
+                recSec.style.display = 'block';
             } else {
-                alert("Commission: You receive 5 ETB for each successful referral.");
+                recSec.style.display = 'none';
             }
         }
 
-        function buyProduct(price) {
-            alert("To purchase this item (Cost: " + price + " ETB), please recharge your account balance via the Recharge button.");
-        }
+        function openWithdraw() {
+            let amountInput = prompt("Enter amount to withdraw (Min: 700 ETB, Max: 30,000 ETB):");
+            
+            if (amountInput !== null && amountInput.trim() !== "") {
+                let amount = parseFloat(amountInput);
 
-        function copyLink() {
-            let copyText = document.getElementById("ref-link");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
-            alert("Referral link copied successfully!");
+                if (isNaN(amount)) {
+                    alert("Please enter a valid numeric amount.");
+                    return;
+                }
+
+                // Checking the limit: 700 ETB to 30,000 ETB
+                if (amount < 700) {
+                    alert("Minimal withdrawal amount is 700 ETB.");
+                } else if (amount > 30000) {
+                    alert("Maximal withdrawal amount is 30,000 ETB.");
+                } else {
+                    let hist = document.getElementById('withdraw-history');
+                    if (hist.innerHTML.includes('No withdrawal')) hist.innerHTML = '';
+                    
+                    let id = Date.now();
+                    hist.innerHTML += `
+                        <div class="history-item" id="w-${id}">
+                            <div>
+                                <b>Withdrawal</b><br>
+                                <span style="font-size:12px; color:#aaa;">${amount.toLocaleString()} ETB</span>
+                            </div>
+                            <span class="status-proc" id="stat-${id}">Processing</span>
+                        </div>`;
+
+                    // Success Simulation after 6 seconds
+                    setTimeout(() => {
+                        let statElem = document.getElementById(`stat-${id}`);
+                        if (statElem) {
+                            statElem.innerText = "Successful";
+                            statElem.className = "status-succ";
+                            alert(`Congratulations Geleta Adem! Withdrawal of ${amount.toLocaleString()} ETB was successful.`);
+                        }
+                    }, 6000);
+                }
+            }
         }
     </script>
 </body>
