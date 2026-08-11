@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HARD JOB PLATFORM</title>
+  <title>ORO INVESTMENT PLATFORM</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: #0d0e12; color: #ffffff; padding: 12px; display: flex; flex-direction: column; align-items: center; }
     .container { width: 100%; max-width: 440px; }
     
-    /* Header */
+    /* Header & Logo */
     .header { text-align: center; margin-bottom: 15px; }
-    .logo-box { display: inline-flex; align-items: center; justify-content: center; background: #1c1e24; border-radius: 20px; padding: 4px 15px; border: 1px solid #ffd700; margin-bottom: 6px; }
-    .logo-text { color: #ffd700; font-weight: bold; font-size: 13px; }
+    .app-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid #ffd700; object-fit: cover; margin-bottom: 8px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
     .header h1 { color: #ffd700; font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
 
     /* Balance Dashboard Card */
@@ -63,7 +62,7 @@
 <!-- Registration Modal -->
 <div id="regModal" class="modal-overlay">
   <div class="modal-box">
-    <h2>HARD JOB PLATFORM</h2>
+    <h2>ORO INVESTMENT</h2>
     <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">Sign in or Register to continue</p>
     <input type="text" id="regName" placeholder="Full Name">
     <input type="tel" id="regPhone" placeholder="Mobile Number (e.g. 09...)">
@@ -111,12 +110,10 @@
 </div>
 
 <div class="container">
-  <!-- Header -->
+  <!-- Header with Official Logo -->
   <div class="header">
-    <div class="logo-box">
-      <span class="logo-text">🖼️ HARD JOB LOGO</span>
-    </div>
-    <h1>HARD JOB PLATFORM</h1>
+    <img src="https://i.ibb.co/3sS7m4F/oro-logo.jpg" alt="ORO INVESTMENT LOGO" class="app-logo" onerror="this.src='https://via.placeholder.com/90/0d0e12/ffd700?text=ORO+LOGO'">
+    <h1>ORO INVESTMENT PLATFORM</h1>
   </div>
 
   <!-- Balance Dashboard -->
@@ -150,127 +147,19 @@
     </div>
   </div>
 
-  <!-- Filter Tiers -->
+  <!-- Filter Tiers (English) -->
   <div class="filter-tabs">
-    <button class="filter-btn active" onclick="switchTab('tier1', this)">Magaalota 1ffaa</button>
-    <button class="filter-btn" onclick="switchTab('tier2', this)">Magaalota 2ffaa</button>
-    <button class="filter-btn" onclick="switchTab('vip', this)">Magaalota Albuudaa</button>
+    <button class="filter-btn active" onclick="switchTab('tier1', this)">Tier 1 Packages</button>
+    <button class="filter-btn" onclick="switchTab('tier2', this)">Tier 2 Packages</button>
+    <button class="filter-btn" onclick="switchTab('vip', this)">Mineral VIPs</button>
   </div>
 
-  <!-- Tier 1: Moderate Tier 1 -->
+  <!-- Tier 1 Section (Translated to English) -->
   <div id="tier1" class="tab-content active">
-    <div class="package-card">
-      <div class="package-img">🥚</div>
-      <div class="package-info">
-        <h3>Killee</h3>
-        <p>Price: 280 ETB | Daily: 46 ETB</p>
-        <p>Days: 15 | Total: 690 ETB</p>
-        <span class="badge">Return: 5%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(280)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🥛</div>
-      <div class="package-info">
-        <h3>Aannan</h3>
-        <p>Price: 350 ETB | Daily: 49 ETB</p>
-        <p>Days: 19 | Total: 931 ETB</p>
-        <span class="badge">Return: 10%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(350)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🥣</div>
-      <div class="package-info">
-        <h3>Aannan Ititaa</h3>
-        <p>Price: 450 ETB | Daily: 58 ETB</p>
-        <p>Days: 29 | Total: 1,682 ETB</p>
-        <span class="badge">Return: 15%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(450)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🌴</div>
-      <div class="package-info">
-        <h3>Timira</h3>
-        <p>Price: 600 ETB | Daily: 65 ETB</p>
-        <p>Days: 33 | Total: 2,145 ETB</p>
-        <span class="badge">Return: 20%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(600)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🥑</div>
-      <div class="package-info">
-        <h3>Avocado</h3>
-        <p>Price: 784 ETB | Daily: 85 ETB</p>
-        <p>Days: 35 | Total: 2,975 ETB</p>
-        <span class="badge">Return: 25%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(784)">Invest</button>
-    </div>
-  </div>
-
-  <!-- Tier 2: Moderate Tier 2 -->
-  <div id="tier2" class="tab-content">
-    <div class="package-card">
-      <div class="package-img">🐔</div>
-      <div class="package-info">
-        <h3>Lukkuu / Handaaqqo</h3>
-        <p>Price: 550 ETB | Daily: 60 ETB</p>
-        <p>Days: 25 | Total: 1,500 ETB</p>
-        <span class="badge">Return: 5%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(550)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🐐</div>
-      <div class="package-info">
-        <h3>Re'ee</h3>
-        <p>Price: 800 ETB | Daily: 100 ETB</p>
-        <p>Days: 30 | Total: 3,000 ETB</p>
-        <span class="badge">Return: 10%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(800)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🐂</div>
-      <div class="package-info">
-        <h3>Loon</h3>
-        <p>Price: 1,200 ETB | Daily: 120 ETB</p>
-        <p>Days: 35 | Total: 4,200 ETB</p>
-        <span class="badge">Return: 15%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(1200)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🐎</div>
-      <div class="package-info">
-        <h3>Farda</h3>
-        <p>Price: 1,500 ETB | Daily: 150 ETB</p>
-        <p>Days: 40 | Total: 6,000 ETB</p>
-        <span class="badge">Return: 20%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(1500)">Invest</button>
-    </div>
-    <div class="package-card">
-      <div class="package-img">🐪</div>
-      <div class="package-info">
-        <h3>Gaala</h3>
-        <p>Price: 3,000 ETB | Daily: 180 ETB</p>
-        <p>Days: 50 | Total: 9,000 ETB</p>
-        <span class="badge">Return: 25%</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(3000)">Invest</button>
-    </div>
-  </div>
-
-  <!-- Mineral VIP Section -->
-  <div id="vip" class="tab-content">
     <div class="package-card">
       <div class="package-img">🥇</div>
       <div class="package-info">
-        <h3>VIP 1 : Warqii</h3>
+        <h3>VIP 1 : Gold</h3>
         <p>Price: 500 ETB | Daily: 150 ETB</p>
         <p>Days: 15 | Total: 2,250 ETB</p>
         <span class="badge">VIP Level 1</span>
@@ -280,7 +169,7 @@
     <div class="package-card">
       <div class="package-img">🧪</div>
       <div class="package-info">
-        <h3>VIP 2 : Meerkurii</h3>
+        <h3>VIP 2 : Mercury</h3>
         <p>Price: 1,500 ETB | Daily: 350 ETB</p>
         <p>Days: 25 | Total: 8,750 ETB</p>
         <span class="badge">VIP Level 2</span>
@@ -307,6 +196,10 @@
       </div>
       <button class="btn-invest" onclick="buyPkg(3500)">Invest</button>
     </div>
+  </div>
+
+  <!-- Tier 2 Section -->
+  <div id="tier2" class="tab-content">
     <div class="package-card">
       <div class="package-img">👑</div>
       <div class="package-info">
@@ -319,12 +212,26 @@
     </div>
   </div>
 
+  <!-- Mineral VIP Section -->
+  <div id="vip" class="tab-content">
+    <div class="package-card">
+      <div class="package-img">🏆</div>
+      <div class="package-info">
+        <h3>VIP Platinum</h3>
+        <p>Price: 10,000 ETB | Daily: 1,600 ETB</p>
+        <p>Days: 50 | Total: 80,000 ETB</p>
+        <span class="badge">VIP Platinum</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(10000)">Invest</button>
+    </div>
+  </div>
+
   <!-- Terms & App Rules -->
   <div class="rule-box" style="margin-top:20px;">
     <strong>App Rules & Anti-Fraud Policy:</strong><br>
     1. Attempting to defame or misuse the application will result in immediate account termination.<br>
-    2. Users completing Tier 1 must purchase from Tier 2 to unlock withdrawals. Tier 2 users must purchase VIP 3 to continue standard withdrawals.<br>
-    3. Payment proof must be uploaded instantly; expired receipts will be rejected automatically.
+    2. Withdrawal processing time takes 24 to 48 hours.<br>
+    3. Payment proof must be uploaded instantly.
   </div>
 
   <!-- Support Section -->
@@ -345,7 +252,7 @@
 
     if (name && phone && pin.length === 6) {
       document.getElementById('regModal').style.display = 'none';
-      alert('Registration successful! Welcome to HARD JOB PLATFORM.');
+      alert('Registration successful! Welcome to ORO INVESTMENT PLATFORM.');
     } else {
       alert('Please fill all fields correctly. PIN must be exactly 6 digits!');
     }
