@@ -3,149 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hard Job - Platform</title>
+    <title>HARD JOB PLATFORM</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #0f0f12; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding-bottom: 80px; }
-        .header { background: #1a1a24; padding: 18px; text-align: center; border-bottom: 2px solid #ffd700; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .header h2 { color: #ffd700; font-size: 22px; letter-spacing: 1px; }
-        .balance-card { background: linear-gradient(135deg, #1f1f2e, #14141d); margin: 15px; padding: 20px; border-radius: 15px; border: 1px solid #ffd700; text-align: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1); }
-        .balance-val { font-size: 32px; font-weight: bold; color: #ffd700; margin: 10px 0; }
-        .btn-row { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-        .btn { padding: 12px 24px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-rec { background: #28a745; color: white; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
-        .btn-wit { background: #dc3545; color: white; box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3); }
-        .section { margin: 15px; background: #1a1a24; padding: 15px; border-radius: 12px; border: 1px solid #2d2d3d; }
-        .section h3 { color: #ffd700; font-size: 16px; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px; }
-        .bank-card { background: #0a0a0d; padding: 12px; border-radius: 8px; border-left: 4px solid #ffd700; margin-bottom: 10px; }
-        .bank-card p { margin: 4px 0; font-size: 13px; color: #ddd; }
-        .bank-card b { color: #fff; }
-        .acc-num { color: #ffd700; font-weight: bold; font-size: 15px; }
-        .history-item { border-bottom: 1px solid #2a2a3a; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
-        .status-proc { color: #ff9800; font-size: 12px; font-weight: bold; background: rgba(255, 152, 0, 0.1); padding: 4px 8px; border-radius: 5px; }
-        .status-succ { color: #28a745; font-size: 12px; font-weight: bold; background: rgba(40, 167, 69, 0.1); padding: 4px 8px; border-radius: 5px; }
-        .social-link { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; margin: 8px 0; padding: 10px; background: #252538; border-radius: 8px; font-size: 14px; }
-        .social-link:hover { background: #32324a; }
-        .limit-info { font-size: 12px; color: #aaa; margin-top: 5px; }
+        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Segoe UI', sans-serif; padding-bottom: 80px; }
+        
+        /* Header & Logo */
+        .header { text-align: center; padding: 20px; background: #141414; border-bottom: 2px solid #ffd700; position: sticky; top: 0; z-index: 1000; }
+        .header img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 10px; object-fit: cover; }
+        .header h2 { color: #ffd700; font-size: 22px; }
+
+        /* Balance Section */
+        .balance-card { background: #1c1c24; margin: 20px 15px; padding: 20px; border-radius: 15px; border: 1px solid #ffd700; text-align: center; }
+        .balance-amount { font-size: 32px; font-weight: bold; color: #ffd700; margin: 10px 0; }
+        .action-btns { display: flex; justify-content: center; gap: 15px; }
+        .btn { padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; }
+        .btn-recharge { background: #28a745; color: white; }
+        .btn-withdraw { background: #dc3545; color: white; }
+
+        /* Tabs */
+        .nav-tabs { display: flex; justify-content: space-around; background: #181818; margin: 15px; padding: 5px; border-radius: 10px; border: 1px solid #333; }
+        .tab-btn { background: none; border: none; color: #aaa; padding: 10px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .tab-btn.active { background: #ffd700; color: #000; border-radius: 8px; }
+        .tab-content { display: none; padding: 0 15px; }
+        .tab-content.active { display: block; }
+
+        /* Market Cards */
+        .pkg-card { background: #181818; padding: 15px; margin-bottom: 12px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
+        .btn-buy { background: #ffd700; color: #000; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; }
+        
+        /* Forms */
+        .section-box { background: #181818; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #333; }
+        .upload-input { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; }
+        .social-link { display: block; background: #222; color: #fff; padding: 12px; text-decoration: none; text-align: center; border-radius: 8px; margin-top: 10px; border: 1px solid #333; }
     </style>
 </head>
 <body>
 
     <div class="header">
+        <img src="logo.png" alt="Logo">
         <h2>HARD JOB PLATFORM</h2>
     </div>
 
     <div class="balance-card">
-        <p style="color: #aaa; font-size: 14px;">Total Balance</p>
-        <div class="balance-val" id="myBalance">0.00 ETB</div>
-        <div class="btn-row">
-            <button class="btn btn-rec" onclick="toggleRecharge()">📥 Recharge</button>
-            <button class="btn btn-wit" onclick="openWithdraw()">📤 Withdraw</button>
-        </div>
-        <p class="limit-info">Withdrawal Limit: 700 ETB - 30,000 ETB</p>
-    </div>
-
-    <!-- Recharge Section (Payment Methods) -->
-    <div id="recharge-section" class="section" style="display:none;">
-        <h3>Deposit Payment Accounts</h3>
-        <p style="font-size: 12px; color: #ccc; margin-bottom: 12px;">Qarshii kaffaluuf lakkoofsa bankii armaan gadiitti fayyadamaa:</p>
-        
-        <!-- CBE BANK -->
-        <div class="bank-card" style="border-left-color: #ffd700;">
-            <p><b>Bank:</b> Commercial Bank of Ethiopia (CBE)</p>
-            <p><b>Acc. Number:</b> <span class="acc-num">1000609844292</span></p>
-            <p><b>Name:</b> Geleta Adem</p>
-        </div>
-
-        <!-- TELEBIRR -->
-        <div class="bank-card" style="border-left-color: #0088cc;">
-            <p><b>Wallet:</b> Telebirr</p>
-            <p><b>Number:</b> <span class="acc-num">0941470214</span></p>
-            <p><b>Name:</b> Geleta Adem</p>
-        </div>
-
-        <!-- CBE BIRR -->
-        <div class="bank-card" style="border-left-color: #28a745;">
-            <p><b>Wallet:</b> CBE BIRR</p>
-            <p><b>Number:</b> <span class="acc-num">0941470214</span></p>
-            <p><b>Name:</b> Geleta Adem</p>
-        </div>
-
-        <p style="font-size: 11px; color: #ff9800; margin-top: 10px; line-height: 1.4;">
-            ⚠️ Erga kaffaltii raawwattanii booda, nagahee (screenshot) kaffaltii sana Admin-iif ergaa.
-        </p>
-    </div>
-
-    <!-- Withdrawal History -->
-    <div class="section">
-        <h3>Withdrawal History</h3>
-        <div id="withdraw-history">
-            <p style="color: #666; font-size: 13px; text-align: center; padding: 10px;">No withdrawal history yet.</p>
+        <div style="font-size: 13px; color: #aaa;">Total Balance</div>
+        <div class="balance-amount" id="userBalance">0.00 ETB</div>
+        <div class="action-btns">
+            <button class="btn btn-recharge" onclick="showTab('rechargeTab')">📥 Recharge</button>
+            <button class="btn btn-withdraw" onclick="withdraw()">📤 Withdraw</button>
         </div>
     </div>
 
-    <!-- Support & Admin Contact -->
-    <div class="section">
-        <h3>Support & Community</h3>
-        <a href="https://t.me/YourChannelLink" class="social-link">📢 Join Telegram Channel</a>
-        <a href="https://t.me/YourAdminLink" class="social-link">👤 Contact Admin</a>
+    <div class="nav-tabs">
+        <button class="tab-btn active" id="b-market" onclick="showTab('marketTab')">🏬 Market</button>
+        <button class="tab-btn" id="b-recharge" onclick="showTab('rechargeTab')">💳 Deposit</button>
+        <button class="tab-btn" id="b-invite" onclick="showTab('inviteTab')">🔗 Invite</button>
+    </div>
+
+    <!-- Market -->
+    <div id="marketTab" class="tab-content active">
+        <div class="pkg-card"><div><h4>🥚 Killee</h4><p>Price: 500 ETB | Daily: 100 ETB</p></div><button class="btn-buy" onclick="buy(500)">Invest</button></div>
+        <div class="pkg-card"><div><h4>🐔 Lukkuu</h4><p>Price: 2,500 ETB | Daily: 600 ETB</p></div><button class="btn-buy" onclick="buy(2500)">Invest</button></div>
+        <div class="pkg-card"><div><h4>💎 Gold VIP</h4><p>Price: 20,000 ETB | Daily: 6,000 ETB</p></div><button class="btn-buy" onclick="buy(20000)">Invest</button></div>
+    </div>
+
+    <!-- Recharge -->
+    <div id="rechargeTab" class="tab-content">
+        <div class="section-box">
+            <h3>Deposit</h3>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">CBE: 1000609844292 (Geleta Adem)</p>
+            <input type="text" id="tid" class="upload-input" placeholder="Transaction ID (e.g. 12345678)">
+            <input type="file" class="upload-input">
+            <button class="btn btn-recharge" style="width: 100%;" onclick="submitDeposit()">Submit Proof</button>
+        </div>
+    </div>
+
+    <!-- Invite -->
+    <div id="inviteTab" class="tab-content">
+        <div class="section-box">
+            <h3>Invite & Earn</h3>
+            <p style="font-size: 12px; color: #ccc;">Namoota afeeruun 5 ETB argadhu.</p>
+            <input type="text" class="upload-input" value="https://t.me/OroInvestment_Bot" readonly>
+            <button class="btn-buy" style="width: 100%;" onclick="alert('Link copied!')">Copy Link</button>
+        </div>
+    </div>
+
+    <div style="padding: 15px;">
+        <div class="section-box">
+            <h3>Support</h3>
+            <a href="https://t.me/orotechA30" class="social-link">📢 Telegram Channel</a>
+            <a href="https://t.me/OroinvestAdmin" class="social-link">👤 Contact Admin</a>
+        </div>
     </div>
 
     <script>
-        let balance = 0;
-
-        function toggleRecharge() {
-            let recSec = document.getElementById('recharge-section');
-            if (recSec.style.display === 'none') {
-                recSec.style.display = 'block';
-            } else {
-                recSec.style.display = 'none';
-            }
+        let balance = 1000;
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('b-' + id.replace('Tab','')).classList.add('active');
         }
-
-        function openWithdraw() {
-            let amountInput = prompt("Enter amount to withdraw (Min: 700 ETB, Max: 30,000 ETB):");
-            
-            if (amountInput !== null && amountInput.trim() !== "") {
-                let amount = parseFloat(amountInput);
-
-                if (isNaN(amount)) {
-                    alert("Please enter a valid numeric amount.");
-                    return;
-                }
-
-                // Checking the limit: 700 ETB to 30,000 ETB
-                if (amount < 700) {
-                    alert("Minimal withdrawal amount is 700 ETB.");
-                } else if (amount > 30000) {
-                    alert("Maximal withdrawal amount is 30,000 ETB.");
-                } else {
-                    let hist = document.getElementById('withdraw-history');
-                    if (hist.innerHTML.includes('No withdrawal')) hist.innerHTML = '';
-                    
-                    let id = Date.now();
-                    hist.innerHTML += `
-                        <div class="history-item" id="w-${id}">
-                            <div>
-                                <b>Withdrawal</b><br>
-                                <span style="font-size:12px; color:#aaa;">${amount.toLocaleString()} ETB</span>
-                            </div>
-                            <span class="status-proc" id="stat-${id}">Processing</span>
-                        </div>`;
-
-                    // Success Simulation after 6 seconds
-                    setTimeout(() => {
-                        let statElem = document.getElementById(`stat-${id}`);
-                        if (statElem) {
-                            statElem.innerText = "Successful";
-                            statElem.className = "status-succ";
-                            alert(`Congratulations Geleta Adem! Withdrawal of ${amount.toLocaleString()} ETB was successful.`);
-                        }
-                    }, 6000);
-                }
-            }
-        }
+        function buy(amt) { if(balance >= amt) { balance -= amt; alert('Invested Successfully!'); document.getElementById('userBalance').innerText = balance + '.00 ETB'; } else { alert('Insufficient funds'); } }
+        function submitDeposit() { if(document.getElementById('tid').value) { alert('Ragaan kaffaltii keessanii Admin-iif ergameera!'); } else { alert('Transaction ID galchaa!'); } }
+        function withdraw() { alert('Withdrawal limit is 700 - 30,000 ETB. Processing...'); }
     </script>
 </body>
 </html>
