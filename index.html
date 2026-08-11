@@ -6,107 +6,274 @@
     <title>HARD JOB PLATFORM</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Segoe UI', sans-serif; padding-bottom: 80px; }
+        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding-bottom: 90px; }
         
-        /* Header & Logo */
-        .header { text-align: center; padding: 20px; background: #141414; border-bottom: 2px solid #ffd700; position: sticky; top: 0; z-index: 1000; }
-        .header img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 10px; object-fit: cover; }
-        .header h2 { color: #ffd700; font-size: 22px; }
+        /* Auth Screen */
+        #auth-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; background: #0d0d0d; }
+        .auth-card { background: #181818; padding: 25px; border-radius: 15px; border: 1px solid #ffd700; width: 100%; max-width: 350px; text-align: center; }
+        .auth-card h2 { color: #ffd700; margin-bottom: 15px; font-size: 20px; }
+        .auth-input { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #444; color: #fff; border-radius: 8px; font-size: 13px; }
+        
+        /* App Screen */
+        #app-screen { display: none; }
+        .header { text-align: center; padding: 15px; background: #141414; border-bottom: 2px solid #ffd700; position: sticky; top: 0; z-index: 100; }
+        .header img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #ffd700; margin-bottom: 5px; object-fit: cover; }
+        .header h2 { color: #ffd700; font-size: 20px; letter-spacing: 1px; }
 
-        /* Balance Section */
-        .balance-card { background: #1c1c24; margin: 20px 15px; padding: 20px; border-radius: 15px; border: 1px solid #ffd700; text-align: center; }
+        .balance-card { background: linear-gradient(135deg, #1c1c24, #121218); margin: 15px; padding: 20px; border-radius: 15px; border: 1px solid #ffd700; text-align: center; }
+        .balance-title { color: #aaa; font-size: 13px; }
         .balance-amount { font-size: 32px; font-weight: bold; color: #ffd700; margin: 10px 0; }
-        .action-btns { display: flex; justify-content: center; gap: 15px; }
-        .btn { padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; }
+        
+        .action-btns { display: flex; justify-content: center; gap: 12px; margin-top: 15px; }
+        .btn { padding: 10px 20px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 13px; }
         .btn-recharge { background: #28a745; color: white; }
         .btn-withdraw { background: #dc3545; color: white; }
+        .btn-gold { background: #ffd700; color: #000; width: 100%; margin-top: 10px; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Tabs */
-        .nav-tabs { display: flex; justify-content: space-around; background: #181818; margin: 15px; padding: 5px; border-radius: 10px; border: 1px solid #333; }
-        .tab-btn { background: none; border: none; color: #aaa; padding: 10px; cursor: pointer; font-size: 13px; font-weight: bold; }
-        .tab-btn.active { background: #ffd700; color: #000; border-radius: 8px; }
+        .nav-tabs { display: flex; justify-content: space-around; background: #181818; margin: 15px; padding: 5px; border-radius: 10px; border: 1px solid #282828; }
+        .tab-btn { background: none; border: none; color: #aaa; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 8px; flex: 1; font-size: 12px; }
+        .tab-btn.active { background: #ffd700; color: #000; }
+
         .tab-content { display: none; padding: 0 15px; }
         .tab-content.active { display: block; }
 
-        /* Market Cards */
-        .pkg-card { background: #181818; padding: 15px; margin-bottom: 12px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; }
-        .btn-buy { background: #ffd700; color: #000; padding: 10px 20px; border: none; border-radius: 6px; font-weight: bold; }
+        .pkg-card { background: #181818; border-radius: 12px; padding: 15px; margin-bottom: 12px; border: 1px solid #282828; display: flex; justify-content: space-between; align-items: center; }
+        .pkg-info h4 { color: #ffd700; margin-bottom: 5px; font-size: 15px; }
+        .pkg-info p { font-size: 12px; color: #ccc; margin: 2px 0; }
+        .btn-buy { background: #ffd700; color: #000; padding: 8px 16px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+        .section-box { background: #181818; padding: 15px; border-radius: 12px; border: 1px solid #282828; margin-bottom: 15px; }
+        .section-box h3 { color: #ffd700; font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+
+        .bank-info { background: #0d0d0d; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #ffd700; }
+        .bank-info p { font-size: 12px; color: #ddd; margin: 3px 0; }
+
+        .social-link { display: block; background: #222; color: #fff; text-decoration: none; padding: 10px; text-align: center; border-radius: 8px; margin-top: 8px; font-size: 13px; border: 1px solid #333; }
         
-        /* Forms */
-        .section-box { background: #181818; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #333; }
-        .upload-input { width: 100%; padding: 12px; margin: 8px 0; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; }
-        .social-link { display: block; background: #222; color: #fff; padding: 12px; text-decoration: none; text-align: center; border-radius: 8px; margin-top: 10px; border: 1px solid #333; }
+        .sub-nav { display: flex; gap: 5px; margin-bottom: 12px; }
+        .sub-nav button { flex: 1; padding: 8px; background: #222; color: #fff; border: 1px solid #ffd700; border-radius: 6px; font-size: 11px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="logo.png" alt="Logo">
-        <h2>HARD JOB PLATFORM</h2>
-    </div>
-
-    <div class="balance-card">
-        <div style="font-size: 13px; color: #aaa;">Total Balance</div>
-        <div class="balance-amount" id="userBalance">0.00 ETB</div>
-        <div class="action-btns">
-            <button class="btn btn-recharge" onclick="showTab('rechargeTab')">📥 Recharge</button>
-            <button class="btn btn-withdraw" onclick="withdraw()">📤 Withdraw</button>
+    <!-- Registration Screen -->
+    <div id="auth-screen">
+        <div class="auth-card">
+            <h2>HARD JOB PLATFORM</h2>
+            <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;">Register or Login to Continue</p>
+            <input type="text" id="reg-name" class="auth-input" placeholder="Full Name">
+            <input type="text" id="reg-phone" class="auth-input" placeholder="Phone Number">
+            <input type="password" id="reg-pass" class="auth-input" placeholder="Password">
+            <button class="btn-gold" onclick="registerUser()">Register / Login</button>
         </div>
     </div>
 
-    <div class="nav-tabs">
-        <button class="tab-btn active" id="b-market" onclick="showTab('marketTab')">🏬 Market</button>
-        <button class="tab-btn" id="b-recharge" onclick="showTab('rechargeTab')">💳 Deposit</button>
-        <button class="tab-btn" id="b-invite" onclick="showTab('inviteTab')">🔗 Invite</button>
-    </div>
-
-    <!-- Market -->
-    <div id="marketTab" class="tab-content active">
-        <div class="pkg-card"><div><h4>🥚 Killee</h4><p>Price: 500 ETB | Daily: 100 ETB</p></div><button class="btn-buy" onclick="buy(500)">Invest</button></div>
-        <div class="pkg-card"><div><h4>🐔 Lukkuu</h4><p>Price: 2,500 ETB | Daily: 600 ETB</p></div><button class="btn-buy" onclick="buy(2500)">Invest</button></div>
-        <div class="pkg-card"><div><h4>💎 Gold VIP</h4><p>Price: 20,000 ETB | Daily: 6,000 ETB</p></div><button class="btn-buy" onclick="buy(20000)">Invest</button></div>
-    </div>
-
-    <!-- Recharge -->
-    <div id="rechargeTab" class="tab-content">
-        <div class="section-box">
-            <h3>Deposit</h3>
-            <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">CBE: 1000609844292 (Geleta Adem)</p>
-            <input type="text" id="tid" class="upload-input" placeholder="Transaction ID (e.g. 12345678)">
-            <input type="file" class="upload-input">
-            <button class="btn btn-recharge" style="width: 100%;" onclick="submitDeposit()">Submit Proof</button>
+    <!-- Main Application Screen -->
+    <div id="app-screen">
+        <div class="header">
+            <!-- Global Logo Placeholder -->
+            <img src="https://api.iconify.design/tdesign:business-smart.svg?color=%23ffd700" alt="Logo">
+            <h2>HARD JOB PLATFORM</h2>
         </div>
-    </div>
 
-    <!-- Invite -->
-    <div id="inviteTab" class="tab-content">
-        <div class="section-box">
-            <h3>Invite & Earn</h3>
-            <p style="font-size: 12px; color: #ccc;">Namoota afeeruun 5 ETB argadhu.</p>
-            <input type="text" class="upload-input" value="https://t.me/OroInvestment_Bot" readonly>
-            <button class="btn-buy" style="width: 100%;" onclick="alert('Link copied!')">Copy Link</button>
+        <div class="balance-card">
+            <div class="balance-title">Total Balance</div>
+            <div class="balance-amount" id="userBalance">0.00 ETB</div>
+            <div class="action-btns">
+                <button class="btn btn-recharge" onclick="switchMainTab('rechargeTab')">📥 Recharge</button>
+                <button class="btn btn-withdraw" onclick="triggerWithdraw()">📤 Withdraw</button>
+            </div>
+            <p style="font-size: 11px; color: #888; margin-top: 8px;">Withdrawal Limit: 700 ETB - 30,000 ETB</p>
         </div>
-    </div>
 
-    <div style="padding: 15px;">
-        <div class="section-box">
-            <h3>Support</h3>
-            <a href="https://t.me/orotechA30" class="social-link">📢 Telegram Channel</a>
-            <a href="https://t.me/OroinvestAdmin" class="social-link">👤 Contact Admin</a>
+        <div class="nav-tabs">
+            <button class="tab-btn active" id="btn-market" onclick="switchMainTab('marketTab')">🏬 Markets</button>
+            <button class="tab-btn" id="btn-recharge" onclick="switchMainTab('rechargeTab')">💳 Deposit</button>
+            <button class="tab-btn" id="btn-invite" onclick="switchMainTab('inviteTab')">🔗 Invite</button>
+        </div>
+
+        <!-- Market Tab -->
+        <div id="marketTab" class="tab-content active">
+            <div class="sub-nav">
+                <button onclick="showSubMarket('m1')">Tier 1</button>
+                <button onclick="showSubMarket('m2')">Tier 2</button>
+                <button onclick="showSubMarket('vip')">Mineral (VIP)</button>
+            </div>
+
+            <!-- Tier 1 -->
+            <div id="m1">
+                <div class="pkg-card">
+                    <div class="pkg-info">
+                        <h4>Egg Package</h4>
+                        <p>Price: 500 ETB | Daily: 100 ETB</p>
+                        <p>Duration: 30 Days | Total: 3,000 ETB</p>
+                    </div>
+                    <button class="btn-buy" onclick="buyPkg(500, 100)">Invest</button>
+                </div>
+                <div class="pkg-card">
+                    <div class="pkg-info">
+                        <h4>Milk Package</h4>
+                        <p>Price: 1,000 ETB | Daily: 220 ETB</p>
+                        <p>Duration: 30 Days | Total: 6,600 ETB</p>
+                    </div>
+                    <button class="btn-buy" onclick="buyPkg(1000, 220)">Invest</button>
+                </div>
+            </div>
+
+            <!-- Tier 2 -->
+            <div id="m2" style="display:none;">
+                <div class="pkg-card">
+                    <div class="pkg-info">
+                        <h4>Chicken Package</h4>
+                        <p>Price: 2,500 ETB | Daily: 600 ETB</p>
+                        <p>Duration: 30 Days | Total: 18,000 ETB</p>
+                    </div>
+                    <button class="btn-buy" onclick="buyPkg(2500, 600)">Invest</button>
+                </div>
+                <div class="pkg-card">
+                    <div class="pkg-info">
+                        <h4>Goat Package</h4>
+                        <p>Price: 5,000 ETB | Daily: 1,300 ETB</p>
+                        <p>Duration: 30 Days | Total: 39,000 ETB</p>
+                    </div>
+                    <button class="btn-buy" onclick="buyPkg(5000, 1300)">Invest</button>
+                </div>
+            </div>
+
+            <!-- VIP -->
+            <div id="vip" style="display:none;">
+                <div class="pkg-card">
+                    <div class="pkg-info">
+                        <h4>Camel Package</h4>
+                        <p>Price: 10,000 ETB | Daily: 2,800 ETB</p>
+                        <p>Duration: 30 Days | Total: 84,000 ETB</p>
+                    </div>
+                    <button class="btn-buy" onclick="buyPkg(10000, 2800)">Invest</button>
+                </div>
+                <div class="pkg-card">
+                    <div class="pkg-info">
+                        <h4>Gold VIP Package</h4>
+                        <p>Price: 20,000 ETB | Daily: 6,000 ETB</p>
+                        <p>Duration: 30 Days | Total: 180,000 ETB</p>
+                    </div>
+                    <button class="btn-buy" onclick="buyPkg(20000, 6000)">Invest</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recharge Tab -->
+        <div id="rechargeTab" class="tab-content">
+            <div class="section-box">
+                <h3>Deposit Accounts</h3>
+                <div class="bank-info">
+                    <p><b>Bank:</b> Commercial Bank of Ethiopia (CBE)</p>
+                    <p><b>Acc Number:</b> <span style="color:#ffd700;">1000609844292</span></p>
+                    <p><b>Name:</b> Geleta Adem</p>
+                </div>
+                <div class="bank-info">
+                    <p><b>Wallet:</b> Telebirr / CBE BIRR</p>
+                    <p><b>Number:</b> <span style="color:#ffd700;">0941470214</span></p>
+                    <p><b>Name:</b> Geleta Adem</p>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h3>Submit Payment Proof</h3>
+                <input type="number" id="depAmount" class="auth-input" placeholder="Amount Paid (ETB)">
+                <input type="text" id="transId" class="auth-input" placeholder="Transaction ID">
+                <input type="file" id="proofImg" class="auth-input">
+                <button class="btn-gold" onclick="submitDeposit()">Submit Proof</button>
+            </div>
+        </div>
+
+        <!-- Invite Tab -->
+        <div id="inviteTab" class="tab-content">
+            <div class="section-box" style="text-align: center;">
+                <h3>Invite Friends</h3>
+                <p style="font-size: 12px; color: #ccc; margin: 10px 0;">Earn 5 ETB for every active user you invite!</p>
+                <input type="text" id="refLink" class="auth-input" value="https://t.me/OroInvestment_Bot?start=user123" readonly style="text-align:center;">
+                <button class="btn-gold" onclick="copyLink()">Copy Referral Link</button>
+            </div>
+        </div>
+
+        <!-- Support -->
+        <div style="padding: 0 15px;">
+            <div class="section-box">
+                <h3>Support & Community</h3>
+                <a href="https://t.me/orotechA30" target="_blank" class="social-link">📢 Official Telegram Channel</a>
+                <a href="https://t.me/OroinvestAdmin" target="_blank" class="social-link">👤 Contact Admin</a>
+            </div>
         </div>
     </div>
 
     <script>
-        let balance = 1000;
-        function showTab(id) {
+        let balance = 0;
+
+        function registerUser() {
+            let p = document.getElementById('reg-phone').value;
+            let n = document.getElementById('reg-name').value;
+            if(p && n) {
+                document.getElementById('auth-screen').style.display = 'none';
+                document.getElementById('app-screen').style.display = 'block';
+            } else {
+                alert("Please fill in your name and phone number!");
+            }
+        }
+
+        function switchMainTab(id) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.getElementById('b-' + id.replace('Tab','')).classList.add('active');
         }
-        function buy(amt) { if(balance >= amt) { balance -= amt; alert('Invested Successfully!'); document.getElementById('userBalance').innerText = balance + '.00 ETB'; } else { alert('Insufficient funds'); } }
-        function submitDeposit() { if(document.getElementById('tid').value) { alert('Ragaan kaffaltii keessanii Admin-iif ergameera!'); } else { alert('Transaction ID galchaa!'); } }
-        function withdraw() { alert('Withdrawal limit is 700 - 30,000 ETB. Processing...'); }
+
+        function showSubMarket(id) {
+            document.getElementById('m1').style.display = 'none';
+            document.getElementById('m2').style.display = 'none';
+            document.getElementById('vip').style.display = 'none';
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function buyPkg(p, d) {
+            if(balance >= p) {
+                balance -= p;
+                document.getElementById('userBalance').innerText = balance.toLocaleString() + ".00 ETB";
+                alert("Package purchased successfully!");
+            } else {
+                alert("Insufficient balance! Please deposit funds first.");
+                switchMainTab('rechargeTab');
+            }
+        }
+
+        function submitDeposit() {
+            let tid = document.getElementById('transId').value;
+            if(tid) {
+                alert("Deposit proof submitted! Admin will verify within 24 hours.");
+            } else {
+                alert("Please enter Transaction ID.");
+            }
+        }
+
+        function triggerWithdraw() {
+            let amt = prompt("Enter withdrawal amount (700 - 30,000 ETB):");
+            if(amt >= 700 && amt <= 30000) {
+                if(amt <= balance) {
+                    balance -= amt;
+                    document.getElementById('userBalance').innerText = balance.toLocaleString() + ".00 ETB";
+                    alert("Withdrawal request submitted successfully!");
+                } else {
+                    alert("Insufficient balance!");
+                }
+            } else if(amt) {
+                alert("Invalid amount! Limit is 700 - 30,000 ETB.");
+            }
+        }
+
+        function copyLink() {
+            let link = document.getElementById("refLink");
+            link.select();
+            document.execCommand("copy");
+            alert("Referral link copied!");
+        }
     </script>
 </body>
 </html>
