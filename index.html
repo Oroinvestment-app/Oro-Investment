@@ -11,7 +11,7 @@
     
     /* Header & Logo */
     .header { text-align: center; margin-bottom: 15px; }
-    .app-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid #ffd700; object-fit: cover; margin-bottom: 8px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+    .app-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid #ffd700; margin-bottom: 8px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); display: inline-block; }
     .header h1 { color: #ffd700; font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
 
     /* Balance Dashboard Card */
@@ -25,6 +25,9 @@
     .btn { flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: bold; font-size: 13px; cursor: pointer; }
     .btn-recharge { background-color: #28a745; color: #ffffff; }
     .btn-withdraw { background-color: #dc3545; color: #ffffff; }
+
+    /* Status Alert Banner */
+    .status-banner { display: none; background: #1c2333; border: 1px solid #ffd700; color: #ffd700; padding: 10px; border-radius: 8px; margin-bottom: 12px; font-size: 12px; font-weight: bold; text-align: center; }
 
     /* Filter Tiers */
     .filter-tabs { display: flex; gap: 6px; margin-bottom: 15px; }
@@ -110,11 +113,20 @@
 </div>
 
 <div class="container">
-  <!-- Header with Official Logo -->
+  <!-- Header with ORO INVESTMENT Logo -->
   <div class="header">
-    <img src="https://i.ibb.co/3sS7m4F/oro-logo.jpg" alt="ORO INVESTMENT LOGO" class="app-logo" onerror="this.src='https://via.placeholder.com/90/0d0e12/ffd700?text=ORO+LOGO'">
+    <svg class="app-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="95" fill="#0d0e12" stroke="#ffd700" stroke-width="6"/>
+      <circle cx="100" cy="100" r="85" fill="none" stroke="#ffd700" stroke-width="2" stroke-dasharray="4,4"/>
+      <path d="M 50 120 L 80 90 L 110 110 L 150 65" fill="none" stroke="#28a745" stroke-width="8" stroke-linecap="round"/>
+      <polygon points="150,55 160,75 140,75" fill="#28a745"/>
+      <text x="100" y="150" font-family="sans-serif" font-weight="bold" font-size="16" fill="#ffd700" text-anchor="middle">ORO INVEST</text>
+    </svg>
     <h1>ORO INVESTMENT PLATFORM</h1>
   </div>
+
+  <!-- Status Alert Banner -->
+  <div id="statusBanner" class="status-banner"></div>
 
   <!-- Balance Dashboard -->
   <div class="balance-card">
@@ -147,14 +159,14 @@
     </div>
   </div>
 
-  <!-- Filter Tiers (English) -->
+  <!-- Filter Tiers -->
   <div class="filter-tabs">
     <button class="filter-btn active" onclick="switchTab('tier1', this)">Tier 1 Packages</button>
     <button class="filter-btn" onclick="switchTab('tier2', this)">Tier 2 Packages</button>
     <button class="filter-btn" onclick="switchTab('vip', this)">Mineral VIPs</button>
   </div>
 
-  <!-- Tier 1 Section (Translated to English) -->
+  <!-- Tier 1 Packages Section -->
   <div id="tier1" class="tab-content active">
     <div class="package-card">
       <div class="package-img">🥇</div>
@@ -198,7 +210,7 @@
     </div>
   </div>
 
-  <!-- Tier 2 Section -->
+  <!-- Tier 2 Packages Section -->
   <div id="tier2" class="tab-content">
     <div class="package-card">
       <div class="package-img">👑</div>
@@ -245,6 +257,14 @@
   let wBalance = 0.00;
   let lastWithdrawal = 0;
 
+  function showStatus(message, color = "#ffd700") {
+    let banner = document.getElementById('statusBanner');
+    banner.innerText = message;
+    banner.style.color = color;
+    banner.style.borderColor = color;
+    banner.style.display = 'block';
+  }
+
   function registerUser() {
     let name = document.getElementById('regName').value;
     let phone = document.getElementById('regPhone').value;
@@ -269,11 +289,21 @@
   function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
   function submitRecharge() {
-    let amt = document.getElementById('rechargeAmount').value;
+    let amt = parseFloat(document.getElementById('rechargeAmount').value);
     let proof = document.getElementById('rechargeProof').files[0];
+    
     if(amt && proof) {
-      alert('Payment submitted successfully! Your recharge will be verified by admin within 1-2 hours.');
       closeModal('rechargeModal');
+      showStatus("⏳ Your payment is processing...", "#ffd700");
+      alert('Your payment is processing...');
+
+      // Simulation of approval
+      setTimeout(() => {
+        rBalance += amt;
+        document.getElementById('r-bal').innerText = rBalance.toFixed(2);
+        showStatus("✅ Your payment was Successful!", "#28a745");
+        alert('Your payment was Successful!');
+      }, 4000);
     } else {
       alert('Please enter amount and upload payment receipt image!');
     }
@@ -296,11 +326,17 @@
       return;
     }
 
-    wBalance -= amt;
-    document.getElementById('w-bal').innerText = wBalance.toFixed(2);
-    lastWithdrawal = now;
-    alert('Withdrawal request submitted successfully! Processing time: 24 - 48 Hours.');
     closeModal('withdrawModal');
+    showStatus("⏳ Your withdrawal is processing...", "#ffd700");
+    alert('Your withdrawal is processing...');
+
+    setTimeout(() => {
+      wBalance -= amt;
+      document.getElementById('w-bal').innerText = wBalance.toFixed(2);
+      lastWithdrawal = now;
+      showStatus("🎉 Congratulations! Your withdrawal was Successful!", "#28a745");
+      alert('Congratulations! Your withdrawal was Successful!');
+    }, 4000);
   }
 
   function buyPkg(price) {
